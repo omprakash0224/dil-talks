@@ -55,13 +55,13 @@ const Home = () => {
     {
       title: "Creative Break",
       desc: "Spend 20 minutes doing something creative – drawing, music, writing, etc.",
-      img: "https://via.placeholder.com/300x160",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDmCnAp7oXWJlsI0Yb_UTNZPm58oWGI8-dYrU8_2zZ25QVfakkplk1xP6b7UZZftl3mpijU_hxh_hE6HAcLx5Sf44swyIYmNqZGTkVAe9rCUagb8rXucFIMQaEkSVGZuP-tNbsAvrX3nzNXnlvcD33wsqE6a7Tx-2T4HXmZz1fcfXiElQG9R6zJxem8TMKXmU2y_n0pzHBwQL-UEduHSn97sRH3E1Buujj44D8P8Mp2sHrgUxNUKNJ5zpD3-naVQjBcvlt-ttehvwBT",
       stars: 15
     },
     {
       title: "Listen to Music",
       desc: "Play your favorite song and take 5 minutes to just enjoy it.",
-      img: "https://via.placeholder.com/300x160",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDqyreFvnClttmHButplHEQBYPLpXdpPaDrLiyBkARqMtVDeKKneSmKZi6yyu5WF5C3HLzKVBYeEvH6nVamknBt1BU_dxD75Ac8qp3A318f5hv4e2BfzGOZDURmy5f2ZWEk90o-BQOr5VP97i4dPFsXPM51C5s8FxbLVKfwv-rt3KKV83ACQpT0y2WXEj0svPEtdu-0FYv3Ji-NSbH3hQwZTDYcX4mRvpUi1SBSqZ2mhiKPfB-4O9DS-W22FKgWfWxi23PpCm67b6Dz",
       stars: 10
     }
   ];
@@ -70,7 +70,13 @@ const Home = () => {
     <div className="min-h-screen bg-[#F3E6FF] font-sans">
       <header className="flex justify-between items-center px-8 py-4 bg-white shadow-md">
         <div className="flex items-center space-x-2">
-          <div className="text-3xl font-bold text-purple-600">💜</div>
+          <div className="w-26 h-26 flex items-center justify-center mr-1">
+            <img
+              src="/logo.png"
+              alt="DilTalks Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
           <div>
             <h1 className="font-bold text-xl">DilTalks</h1>
             <p className="text-sm text-gray-500">Your Journey, Our Support</p>
@@ -88,7 +94,7 @@ const Home = () => {
               <span className="text-sm text-gray-600">
                 {user.username || 'Anonymous User'}
               </span>
-              <UserButton 
+              <UserButton
                 appearance={{
                   elements: {
                     userButtonAvatarBox: 'w-10 h-10',

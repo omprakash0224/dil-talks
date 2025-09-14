@@ -5,18 +5,44 @@ const assessmentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  responses: [{
-    question: String,
-    answer: String
-  }],
-  score: Number,
-  completed: {
-    type: Boolean,
-    default: false
+  responses: {
+    phq9: [{
+      question: String,
+      answer: {
+        label: String,
+        value: Number
+      }
+    }],
+    gad7: [{
+      question: String,
+      answer: {
+        label: String,
+        value: Number
+      }
+    }],
+    ghq12: [{
+      question: String,
+      answer: {
+        label: String,
+        value: Number
+      }
+    }]
   },
-  completedAt: Date
-}, { timestamps: true });
+  scores: {
+    phq9: Number,
+    gad7: Number,
+    ghq12: Number
+  },
+  aiAnalysis: {
+    summary: String,
+    riskLevel: String,
+    recommendations: [String],
+    requiresImmediate: Boolean
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-const Assessment = mongoose.model('Assessment', assessmentSchema);
-
-export default Assessment;
+export default mongoose.model('Assessment', assessmentSchema);
