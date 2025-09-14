@@ -1,8 +1,23 @@
 import { FaUserCircle } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
 import { motion } from 'framer-motion';
+import { SignInButton, useUser, UserButton } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Home = () => {
+  const { isSignedIn, user } = useUser();
+  const navigate = useNavigate();
+
+  const handleAssessmentClick = () => {
+    if (isSignedIn) {
+      navigate('/assessment');
+    } else {
+      // This will trigger the Clerk sign-in modal
+      document.querySelector('[data-clerk-sign-in]')?.click();
+    }
+  };
+
   const features = [
     {
       title: "Connect with Counselor",
@@ -52,7 +67,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-[#F3E6FF] font-sans">
       <header className="flex justify-between items-center px-8 py-4 bg-white shadow-md">
         <div className="flex items-center space-x-2">
           <div className="text-3xl font-bold text-purple-600">💜</div>
@@ -67,17 +82,46 @@ const Home = () => {
           <a href="#" className="hover:text-purple-600">Feedback</a>
           <a href="#" className="hover:text-purple-600">Working</a>
         </nav>
-        <FaUserCircle className="text-3xl text-gray-600 cursor-pointer" />
+        <div className="flex items-center space-x-4">
+          {isSignedIn ? (
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-gray-600">
+                {user.username || 'Anonymous User'}
+              </span>
+              <UserButton 
+                appearance={{
+                  elements: {
+                    userButtonAvatarBox: 'w-10 h-10',
+                    userButtonTrigger: 'focus:shadow-none hover:opacity-75 transition'
+                  }
+                }}
+                afterSignOutUrl="/"
+              />
+            </div>
+          ) : (
+            <SignInButton mode="modal">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-purple-700 transition"
+              >
+                Sign in Anonymously
+              </motion.button>
+            </SignInButton>
+          )}
+        </div>
       </header>
 
       <main className="text-center py-10 px-4">
         <motion.button
+          onClick={handleAssessmentClick}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="bg-purple-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-purple-700 transition"
         >
           Take Assessment
         </motion.button>
+
         <p className="mt-4 text-gray-600 italic text-sm max-w-xl mx-auto">
           "You, yourself, as much as anybody in the entire universe, deserve your love and affection." – Buddha
         </p>
