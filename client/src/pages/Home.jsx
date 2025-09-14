@@ -51,7 +51,7 @@ const Home = () => {
             Your Journey, Our Support
           </motion.p>
           <motion.button 
-            className="btn-primary text-lg px-8 py-3"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-lg px-8 py-3 transition-colors duration-200 shadow-md hover:shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -77,7 +77,7 @@ const Home = () => {
             {services.map((service, index) => (
               <motion.div 
                 key={service.title}
-                className="card text-center hover:shadow-lg transition-shadow duration-200"
+                className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-200"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
