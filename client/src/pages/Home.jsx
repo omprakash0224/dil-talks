@@ -1,99 +1,125 @@
-import { motion } from 'framer-motion'
-import { Heart, Users, MessageCircle, Shield } from 'lucide-react'
+import { FaUserCircle } from 'react-icons/fa';
+import { AiFillStar } from 'react-icons/ai';
+import { motion } from 'framer-motion';
 
 const Home = () => {
-  const services = [
+  const features = [
     {
-      icon: Users,
       title: "Connect with Counselor",
-      description: "Book a confidential session with a professional counselor.",
-      color: "bg-blue-500"
+      desc: "Book a confidential session with a professional counselor.",
+      icon: "👥",
+      bg: "bg-white text-gray-700"
     },
     {
-      icon: MessageCircle,
       title: "E-Buddy",
-      description: "Find a peer who understands.",
-      color: "bg-green-500"
+      desc: "Find a peer who understands.",
+      icon: "😊",
+      bg: "bg-white text-gray-700"
     },
     {
-      icon: Shield,
       title: "S.O.S",
-      description: "Immediate help.",
-      color: "bg-red-500"
+      desc: "Immediate help.",
+      icon: "🚨",
+      bg: "bg-red-500 text-white"
     },
     {
-      icon: Heart,
+      title: "Story Wall",
+      desc: "Connect with others through shared stories.",
+      icon: "📜",
+      bg: "bg-white text-gray-700"
+    },
+    {
       title: "Chit-Chat",
-      description: "An AI Chat Bot, just for you.",
-      color: "bg-purple-500"
+      desc: "An AI Chat Bot, just for you.",
+      icon: "🤖",
+      bg: "bg-white text-gray-700"
     }
-  ]
+  ];
+
+  const adventures = [
+    {
+      title: "Creative Break",
+      desc: "Spend 20 minutes doing something creative – drawing, music, writing, etc.",
+      img: "https://via.placeholder.com/300x160",
+      stars: 15
+    },
+    {
+      title: "Listen to Music",
+      desc: "Play your favorite song and take 5 minutes to just enjoy it.",
+      img: "https://via.placeholder.com/300x160",
+      stars: 10
+    }
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
-      {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h1 
-            className="text-5xl font-bold text-gray-900 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            DilTalks
-          </motion.h1>
-          <motion.p 
-            className="text-xl text-gray-600 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Your Journey, Our Support
-          </motion.p>
-          <motion.button 
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-lg px-8 py-3 transition-colors duration-200 shadow-md hover:shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Take Assessment
-          </motion.button>
-          
-          <motion.p 
-            className="mt-6 text-gray-500 italic"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            "You, yourself, as much as anybody in the entire universe, deserve your love and affection." - Buddha
-          </motion.p>
+    <div className="min-h-screen bg-gray-50 font-sans">
+      <header className="flex justify-between items-center px-8 py-4 bg-white shadow-md">
+        <div className="flex items-center space-x-2">
+          <div className="text-3xl font-bold text-purple-600">💜</div>
+          <div>
+            <h1 className="font-bold text-xl">DilTalks</h1>
+            <p className="text-sm text-gray-500">Your Journey, Our Support</p>
+          </div>
         </div>
-      </section>
+        <nav className="flex space-x-6 text-gray-600 font-medium">
+          <a href="#" className="hover:text-purple-600">FAQ's</a>
+          <a href="#" className="hover:text-purple-600">About us</a>
+          <a href="#" className="hover:text-purple-600">Feedback</a>
+          <a href="#" className="hover:text-purple-600">Working</a>
+        </nav>
+        <FaUserCircle className="text-3xl text-gray-600 cursor-pointer" />
+      </header>
 
-      {/* Services Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <motion.div 
-                key={service.title}
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-200"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+      <main className="text-center py-10 px-4">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-purple-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-purple-700 transition"
+        >
+          Take Assessment
+        </motion.button>
+        <p className="mt-4 text-gray-600 italic text-sm max-w-xl mx-auto">
+          "You, yourself, as much as anybody in the entire universe, deserve your love and affection." – Buddha
+        </p>
+
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-5 gap-6 max-w-6xl mx-auto px-4">
+          {features.map((card, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -5, boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.1)" }}
+              className={`p-4 rounded-lg shadow-md text-center ${card.bg} transition`}
+            >
+              <div className="text-4xl mb-2">{card.icon}</div>
+              <h3 className="font-semibold">{card.title}</h3>
+              <p className="text-sm mt-2">{card.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-16 px-4 max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-6 text-center">Adventure Time</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {adventures.map((adv, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.03 }}
+                className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition"
               >
-                <div className={`${service.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4`}>
-                  <service.icon className="w-8 h-8 text-white" />
+                <img src={adv.img} alt={adv.title} className="rounded-md w-full h-40 object-cover mb-4" />
+                <h3 className="font-semibold text-lg mb-2">{adv.title}</h3>
+                <p className="text-sm text-gray-600 mb-2">{adv.desc}</p>
+                <div className="flex items-center text-yellow-500">
+                  <AiFillStar />
+                  <span className="ml-1">{adv.stars}</span>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </main>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
+
