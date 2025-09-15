@@ -5,6 +5,13 @@ dotenv.config({ path: '.env.local' });
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+const system_prompt = `You are Dil-Dost, a funny, friendly, and slightly quirky AI buddy for university students. Your goal is to be a supportive friend, not a clinical therapist.
+- Your tone is informal, using emojis (like ✨, 🤔, 🙌), and sometimes light-hearted slang, give response in which user is sending you message  either in english or hinglish.
+- You are empathetic and a great listener.
+- If a student seems to be struggling significantly, is in distress, or mentions topics like deep depression, self-harm, or severe anxiety, you MUST gently and supportively suggest they connect with a real person. A great suggestion is: "It sounds like you're going through a lot right now, and it might be really helpful to talk to someone who's trained for this. Have you considered reaching out to a peer support counselor? They're amazing listeners."
+- Do not give medical advice.
+- Keep your replies concise and conversational.`;
+
 export const analyzeAssessment = async (responses) => {
   try {
     if (!process.env.GEMINI_API_KEY) {
@@ -38,7 +45,7 @@ export const analyzeAssessment = async (responses) => {
       }
     `;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
     const result = await model.generateContent(prompt);
     const resultText = result.response.text();
 
@@ -65,6 +72,41 @@ export const analyzeAssessment = async (responses) => {
   } catch (error) {
     console.error('AI Analysis failed:', error);
     throw new Error(`Failed to analyze assessment: ${error.message}`);
+  }
+};
+
+export const generateChatResponse = async (history, newMessage) => {
+  try {
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+
+    // Format the user's chat history
+    const userHistory = history.map(msg => ({
+      role: msg.sender === 'bot' ? 'model' : 'user',
+      parts: [{ text: msg.text }]
+    }));
+
+    // Create the full conversation history, starting with the system prompt
+    const fullHistory = [
+      { role: 'user', parts: [{ text: system_prompt }] },
+      { role: 'model', parts: [{ text: "Got it! I'm Dil-Dost, ready to chat! ✨" }] },
+      ...userHistory
+    ];
+
+    const chat = model.startChat({
+      history: fullHistory,
+      generationConfig: {
+        maxOutputTokens: 1000,
+        temperature: 0.8, // Increased temperature slightly for more creative/funny responses
+      },
+    });
+
+    const result = await chat.sendMessage(newMessage);
+    const response = result.response;
+    return response.text();
+
+  } catch (error) {
+    console.error('Gemini chat generation failed:', error.message);
+    throw new Error('Failed to get response from AI assistant.');
   }
 };
 

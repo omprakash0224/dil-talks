@@ -138,6 +138,20 @@ const Home = () => {
               key={idx}
               whileHover={{ y: -5, boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.1)" }}
               className={`p-4 rounded-lg shadow-md text-center ${card.bg} transition`}
+              onClick={() => {
+                if (card.title === "Chit-Chat") {
+                  navigate('/AIchat');
+                }
+                if (card.title === "Connect with Counselor") {
+                  navigate('/withCounsellor');
+                }
+                if (card.title === "E-Buddy") {
+                  navigate('/ebuddy');
+                }
+                if (card.title === "Story Wall") {
+                  navigate('/storyWall');
+                }
+              }}
             >
               <div className="text-4xl mb-2">{card.icon}</div>
               <h3 className="font-semibold">{card.title}</h3>
@@ -154,6 +168,14 @@ const Home = () => {
                 key={idx}
                 whileHover={{ scale: 1.03 }}
                 className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition"
+                onClick={() => {
+                if (adv.title === "Creative Break") {
+                  navigate('/breakPage');
+                }
+                if (adv.title === "Listen to Music") {
+                  navigate('/musicPage');
+                }
+              }}
               >
                 <img src={adv.img} alt={adv.title} className="rounded-md w-full h-40 object-cover mb-4" />
                 <h3 className="font-semibold text-lg mb-2">{adv.title}</h3>

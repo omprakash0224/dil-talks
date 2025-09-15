@@ -3,6 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useAuth } from "@clerk/clerk-react";
 import { setAuthToken } from './services/api'; // Import the function
 import Home from './pages/Home';
+import AIchat from './pages/AIchat';
+import Counsellor from './pages/Counsellor';
+import Ebuddy from './pages/Ebuddy';
+import StoryWall from './pages/StoryWall';
+import BreakPage from './pages/BreakPage';
+import MusicPage from './pages/MusicPage';
 import Assessment from './pages/Assessment';
 import { 
   SignedIn, 
@@ -35,6 +41,84 @@ function App() {
               <>
                 <SignedIn>
                   <Assessment />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn mode="modal" />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/aIchat"
+            element={
+              <>
+                <SignedIn>
+                  <AIchat />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn mode="modal" />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/withCounsellor"
+            element={
+              <>
+                <SignedIn>
+                  <Counsellor />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn mode="modal" />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/ebuddy"
+            element={
+              <>
+                <SignedIn>
+                  <Ebuddy />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn mode="modal" />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/storyWall"
+            element={
+              <>
+                <SignedIn>
+                  <StoryWall />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn mode="modal" />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/breakPage"
+            element={
+              <>
+                <SignedIn>
+                  <BreakPage />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn mode="modal" />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/musicPage"
+            element={
+              <>
+                <SignedIn>
+                  <MusicPage />
                 </SignedIn>
                 <SignedOut>
                   <RedirectToSignIn mode="modal" />
