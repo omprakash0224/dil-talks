@@ -45,7 +45,7 @@ export const analyzeAssessment = async (responses) => {
       }
     `;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
     const result = await model.generateContent(prompt);
     const resultText = result.response.text();
 
@@ -77,7 +77,7 @@ export const analyzeAssessment = async (responses) => {
 
 export const generateChatResponse = async (history, newMessage) => {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     // Format the user's chat history
     const userHistory = history.map(msg => ({
