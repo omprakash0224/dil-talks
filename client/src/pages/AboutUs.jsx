@@ -5,7 +5,7 @@ const AboutUs = () => {
     {
         name: "Vaibhav",
         role: "Team Lead",
-        img: "/team/vaibhav.jpg"
+        img: "/team/vaibhav.jpeg"
     },
     {
         name: "Om Prakash",
@@ -15,7 +15,7 @@ const AboutUs = () => {
     {
       name: "Saloni",
       role: "Vice Lead",
-      img: "/team/saloni.jpg"
+      img: "/team/saloni.jpeg"
     },
     {
       name: "Tanya",
@@ -25,7 +25,7 @@ const AboutUs = () => {
     {
       name: "Udit",
       role: "UI/UX Designer",
-      img: "/team/anshul.png"
+      img: "/team/anshul.jpeg"
     },
     {
       name: "Aashu",
