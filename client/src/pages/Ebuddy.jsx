@@ -11,13 +11,13 @@ const EBuddy = () => {
   };
 
   const handleRegister = () => {
-    window.open("https://forms.gle/your-google-form-link", "_blank"); // Redirect to Google Form
+    window.open("https://forms.gle/q2r7EmkLv1buAJbF8", "_blank"); // Redirect to Google Form
   };
 
   return (
     <div className="min-h-screen bg-[#E6E6FA] p-4 sm:p-8 flex flex-col items-center justify-center space-y-8">
       <h1 className="text-3xl font-bold text-center text-gray-800">
-        E-Buddy
+        Saathi
       </h1>
 
       <div className="grid gap-6 sm:grid-cols-2 w-full max-w-4xl">
@@ -37,7 +37,7 @@ const EBuddy = () => {
             <p className="text-sm text-gray-600">
               Chat with our friendly volunteers who are ready to listen and support you.
             </p>
-            <Button variant="ghost" color="indigo" className="mt-4 w-full hover:bg-indigo-50">
+            <Button variant="ghost" color="indigo" className="mt-4 w-full px-4 py-2 text-white bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 shadow-md hover:shadow-lg transition-all duration-300 rounded-lg font-semibold">
               Start Chat
             </Button>
           </div>
@@ -58,7 +58,7 @@ const EBuddy = () => {
             <p className="text-sm text-gray-600">
               Join our community and help others by providing guidance and support.
             </p>
-            <Button variant="ghost" color="indigo" className="mt-4 w-full hover:bg-indigo-50">
+            <Button variant="ghost" color="indigo" className="mt-4 w-full px-4 py-2 text-white bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 shadow-md hover:shadow-lg transition-all duration-300 rounded-lg font-semibold">
               Register Now
             </Button>
           </div>

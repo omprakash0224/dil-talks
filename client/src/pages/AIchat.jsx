@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useUser } from '@clerk/clerk-react';
-import apiClient from '../services/api';
+import { useUser, useAuth } from '@clerk/clerk-react';
+import apiClient, { setAuthToken } from '../services/api';
 import { motion } from 'framer-motion';
 import { FaPaperPlane } from 'react-icons/fa';
 
@@ -19,6 +19,8 @@ const AIchat = () => {
 
   useEffect(scrollToBottom, [messages]);
 
+  const { getToken } = useAuth();
+
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (input.trim() === '' || isLoading) return;
@@ -29,9 +31,11 @@ const AIchat = () => {
     setIsLoading(true);
 
     try {
-      // Send the current message and the recent history to the backend
+      const token = await getToken();
+      setAuthToken(token); // Set the token here before making the request
+
       const response = await apiClient.post('/api/chat', {
-        history: messages.slice(-6), // Send last 6 messages for context
+        history: messages.slice(-6),
         message: input,
       });
 
@@ -69,11 +73,10 @@ const AIchat = () => {
               </div>
             )}
             <div
-              className={`max-w-lg p-3 rounded-2xl ${
-                msg.sender === 'user'
+              className={`max-w-lg p-3 rounded-2xl ${msg.sender === 'user'
                   ? 'bg-blue-500 text-white rounded-br-none'
                   : 'bg-white text-gray-800 rounded-bl-none shadow-sm'
-              }`}
+                }`}
             >
               <p className="text-sm">{msg.text}</p>
             </div>

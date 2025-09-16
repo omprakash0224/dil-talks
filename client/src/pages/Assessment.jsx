@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useUser } from '@clerk/clerk-react';
-import apiClient from '../services/api';
+import { useUser, useAuth } from '@clerk/clerk-react';
+import apiClient, { setAuthToken } from '../services/api';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { FaShieldAlt, FaLightbulb, FaExclamationTriangle, FaRedo, FaHome } from 'react-icons/fa';
@@ -52,6 +52,7 @@ const options = [
 
 const Assessment = () => {
   const { user } = useUser();
+  const { getToken } = useAuth(); 
   const navigate = useNavigate();
   const [currentSection, setCurrentSection] = useState('phq9');
   const [responses, setResponses] = useState({
@@ -91,6 +92,9 @@ const Assessment = () => {
       }
 
       console.log('Submitting responses:', responses);
+
+      const token = await getToken();
+      setAuthToken(token);
 
       // Use the authenticated apiClient instead of axios
       const response = await apiClient.post('/api/assessments', {

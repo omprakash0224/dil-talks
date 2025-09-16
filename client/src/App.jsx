@@ -10,6 +10,7 @@ import StoryWall from './pages/StoryWall';
 import BreakPage from './pages/BreakPage';
 import MusicPage from './pages/MusicPage';
 import Assessment from './pages/Assessment';
+import AboutUs from './pages/AboutUs';
 import { 
   SignedIn, 
   SignedOut, 
@@ -126,6 +127,7 @@ function App() {
               </>
             }
           />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
       </Router>
     </>
