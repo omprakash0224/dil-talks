@@ -11,6 +11,7 @@ import BreakPage from './pages/BreakPage';
 import MusicPage from './pages/MusicPage';
 import Assessment from './pages/Assessment';
 import AboutUs from './pages/AboutUs';
+import Aura from './pages/Aura';
 import { 
   SignedIn, 
   SignedOut, 
@@ -120,6 +121,19 @@ function App() {
               <>
                 <SignedIn>
                   <MusicPage />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn mode="modal" />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/aura"
+            element={
+              <>
+                <SignedIn>
+                  <Aura />
                 </SignedIn>
                 <SignedOut>
                   <RedirectToSignIn mode="modal" />

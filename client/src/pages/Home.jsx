@@ -168,6 +168,21 @@ const Home = () => {
           ))}
         </div>
 
+        {/* Explore Aura Card */}
+        <div className="mt-16 px-4 max-w-4xl mx-auto">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl shadow-lg p-8 text-white cursor-pointer hover:shadow-2xl"
+            onClick={() => navigate('/aura')}
+          >
+            <h2 className="text-3xl font-bold mb-2">Explore Aura</h2>
+            <p className="text-sm opacity-90">Discover calming 3D experiences designed to guide your wellness journey.</p>
+          </motion.div>
+        </div>
+
         <div className="mt-16 px-4 max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold mb-6 text-center">Adventure Time</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 cursor-pointer">
